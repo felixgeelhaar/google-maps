@@ -16,10 +16,11 @@ export interface googlemaps {
 }
 
 export class GoogleMap {
-    public google?: googlemaps;
-
     private static callbackName = 'default_google_maps_callback';
     private static isGoogleMapMounted = false;
+
+    private _google?: googlemaps;
+    private _map?: google.maps.Map;
 
     private apiKey: string;
 
@@ -40,7 +41,15 @@ export class GoogleMap {
         this.defer = defer;
     }
 
-    public get language() {
+    public get google(): googlemaps | undefined {
+        return this._google;
+    }
+
+    public get map(): google.maps.Map | undefined {
+        return this._map;
+    }
+
+    public get language(): string | undefined {
         return this._language;
     }
 
@@ -50,7 +59,7 @@ export class GoogleMap {
         this.mount(this.node, this.mapOptions);
     }
 
-    public get region() {
+    public get region(): string | undefined {
         return this._region;
     }
 
@@ -127,11 +136,11 @@ export class GoogleMap {
         this.mapOptions = mapOptions;
         this.prepareScript();
         GoogleMap.isGoogleMapMounted = true;
-        this.google = await this.awaitCallback();
+        this._google = await this.awaitCallback();
 
-        if (this.google && node) {
+        if (this._google && node) {
             node.setAttribute('style', 'height: 500px');
-            new this.google.maps.Map(node, mapOptions);
+            this._map = new this._google.maps.Map(node, mapOptions);
         }
     }
 
