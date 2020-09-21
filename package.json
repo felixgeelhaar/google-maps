@@ -1,0 +1,26 @@
+{
+  "name": "@felixgeelhaar/google-maps",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "author": "Felix Geelhaar <felix@felixgeelhaar.de>",
+  "description": "Library written in Typescript to use Google Maps within your project.",
+  "keywords": [
+    "google maps",
+    "Typescript"
+  ],
+  "scripts": {
+    "prepublish": "tsc",
+    "lint": "eslint '*/**/*.{js,ts}' --quiet --fix"
+  },
+  "devDependencies": {
+    "@types/googlemaps": "^3.39.13",
+    "@typescript-eslint/parser": "^4.1.1",
+    "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2",
+    "typescript": "^4.0.3"
+  }
+}
